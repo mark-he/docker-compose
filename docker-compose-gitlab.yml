@@ -3,10 +3,18 @@ services:
   gitlab:
     image: gitlab/gitlab-ce
     container_name: gitlab
+    hostname: gitlab
+    environment:
+      TZ: 'Asia/Shanghai'
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://192.168.128.20'
+        gitlab_rails['time_zone'] = 'Asia/Shanghai'
+    restart: always
+    privileged: true
     volumes:
       - ./data/gitlab/config:/etc/gitlab
       - ./data/gitlab/logs:/var/log/gitlab
       - ./data/gitlab/data:/var/opt/gitlab
     ports:
-      - "10022:22"
-      - "10080:80"
+      - "7022:22"
+      - "7080:80"
