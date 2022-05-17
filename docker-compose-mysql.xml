@@ -1,0 +1,18 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    security_opt:
+        - seccomp:unconfined
+#    networks:
+#      - sc-net
+    ports:
+      - 3306:3306
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: root123
+  

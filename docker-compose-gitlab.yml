@@ -1,0 +1,12 @@
+version: '3'
+services:
+  gitlab:
+    image: gitlab/gitlab-ce
+    container_name: gitlab
+    volumes:
+      - ./data/gitlab/config:/etc/gitlab
+      - ./data/gitlab/logs:/var/log/gitlab
+      - ./data/gitlab/data:/var/opt/gitlab
+    ports:
+      - "10022:22"
+      - "10080:80"
